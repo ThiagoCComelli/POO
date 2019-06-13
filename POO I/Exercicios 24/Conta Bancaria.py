@@ -12,6 +12,7 @@ class Conta():
     def sacar(self,x):
         if self.__saldo - x >= 0:
             self.__saldo -= x
+
         else:
             return 'saldo insuficiente'
     def depositar(self,x):
