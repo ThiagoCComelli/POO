@@ -5,7 +5,7 @@ horainicial = input().split(" ")
 x = int(horainicial[0])
 y = int(horainicial[2])
 z = int(horainicial[4])
-
+#
 diafinal = input().split(" ")
 df = int(diafinal[1])
 horafinal = input().split(" ")
