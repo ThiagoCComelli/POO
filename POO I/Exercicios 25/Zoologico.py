@@ -58,7 +58,7 @@ class Jaula():
 
 
 
-class Animal()
+class Animal():
     def __init__(self,nome,idade,peso,tipo,especie):
         self.__nome = nome
         self.__idade = idade
