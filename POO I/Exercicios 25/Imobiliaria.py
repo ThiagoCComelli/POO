@@ -17,10 +17,14 @@ class Imovel():
     def addComodo(self,x):
         if x == 'quarto':
             self.__quartos.append(x)
+            self.__metragem += x.getMetragemc()
+
         elif x == 'banheiro':
             self.__banheiros.append(x)
-    def setMetragem(self,x):
-        self.__metragem += x.getMetragemc
+            self.__metragem += x.getMetragemc()-
+
+
+
 
     def getMetragem(self):
         return self.__metragem
@@ -30,7 +34,7 @@ class Imovel():
         return self.__banheiros
 
 class Comodo():
-    def __init__(self,nome,metragem):
+    def __init__(self,nome='',metragem=0):
         self.__nome = nome
         self.__metragemc = metragem
 
@@ -39,12 +43,10 @@ class Comodo():
     def getNome(self):
         return self.__nome
 
-    def __repr__(self):
-        return 'Comodo: {}, Tamanho: {}'\
-            .format(self.getNome(),self.getMetragemc())
+
 
 com0 = Comodo('quarto',100)
-print(com0)
 imo0 = Imovel()
 imo0.addComodo(com0)
 print(imo0.getMetragem())
+print(com0.getMetragemc())
