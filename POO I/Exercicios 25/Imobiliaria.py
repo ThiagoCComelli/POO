@@ -21,7 +21,7 @@ class Imovel():
 
         elif x == 'banheiro':
             self.__banheiros.append(x)
-            self.__metragem += x.getMetragemc()-
+            #self.__metragem += x.getMetragemc()-
 
 
 
