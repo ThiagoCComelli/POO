@@ -3,14 +3,11 @@ import time
 import tkinter
 from tkinter import *
 
-"""
-self.photo = PhotoImage(file="flore.gif")
-self.backlabel = Label(root, image=self.photo).place(x=0, y=0)
-"""
-
-
 class A:
     def __init__(self, master):
+        self.photo = PhotoImage(file="oceana.gif")
+        self.backlabel = Label(root, image=self.photo).place(x=0, y=0)
+
         self.titulo=tk.Label(master)
         self.titulo.grid(row=0, column=0)
         self.titulo.configure(text='Somador!',font=("Arial",25))

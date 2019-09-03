@@ -101,4 +101,30 @@ result.pack()
 top.mainloop()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def butto(self):
+        lista = []
+        for i in range(20):
+            lista.append("oi"+str(i))
+        for i in lista:
+            xis = randint(50, 700)
+            ipis = randint(50, 700)
+            i = tkinter.Button(master=root,text="EUROPEU",width=13,command=self.butto,fg="red",bg="black",font="Times 13 bold").place(x=xis,y=ipis)
+
 """
