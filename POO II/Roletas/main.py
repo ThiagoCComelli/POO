@@ -192,7 +192,7 @@ class A:
             self.titulo.configure(text='AMERICANO', font="Times 25 bold",fg="red",bg="black")
             self.titulo.place(x=850)
 
-            voltar = tkinter.Button(master=root,text="voltar para o menu",width=15,command=self.voltarMenu,fg="red",bg="black",font=("Times 13 bold")).place(x=10,y=10)
+            voltar = tkinter.Button(master=root,text="VOLTAR PARA O MENU",width=15,command=self.voltarMenu,fg="red",bg="black",font=("Times 13 bold")).place(x=10,y=10)
 
             self.apostas()
 
