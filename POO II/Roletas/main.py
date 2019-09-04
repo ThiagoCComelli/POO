@@ -10,7 +10,10 @@ class A:
     def __init__(self, master):
         self.roleta = Roleta()
         self.players = 0
+        self.playersjogando = []
         self.modo = "NENHUM"
+        self.banco = 1000
+        self.apostados = []
         self.menu()
 
     def menu(self):
@@ -56,6 +59,7 @@ class A:
         add8 = tkinter.Button(master=root, text="JOGAR", width=20, command=self.jogar, fg="red", bg="black",font=("Times 13 bold")).place(x=1000, y=600)
 
     def apostas(self):
+
         ap3 = tkinter.Button(master=root,text="3",width=1,height=0,fg="red",bg="yellow",font="Times 13 bold").place(x=568,y=462)
         ap6 = tkinter.Button(master=root,text="6",width=1,height=0,fg="red",bg="yellow",font="Times 13 bold").place(x=663,y=462)
         ap9 = tkinter.Button(master=root,text="9",width=1,height=0,fg="red",bg="yellow",font="Times 13 bold").place(x=757,y=462)
@@ -95,6 +99,38 @@ class A:
         ap31 = tkinter.Button(master=root, text="31", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1533, y=769)
         ap34 = tkinter.Button(master=root, text="34", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1630, y=769)
 
+        linha1 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1727, y=462)
+        linha1 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1727, y=615)
+        linha1 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1727, y=769)
+
+        zero = tkinter.Button(master=root, text="0", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=471, y=615)
+        ap1to12 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=710, y=830)
+        ap2to12 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1100, y=830)
+        ap3to12 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1490, y=830)
+
+        umto18 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=615, y=900)
+        even = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=806, y=900)
+        red = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=997, y=900)
+        black = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1188, y=900)
+        odd = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1379, y=900)
+        dezenoveto36 = tkinter.Button(master=root, text="", width=1, height=0, fg="red", bg="yellow",font="Times 13 bold").place(x=1579, y=900)
+
+
+        um = tkinter.Button(master=root, text="1", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=50, y=750)
+        dois = tkinter.Button(master=root, text="2", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=130, y=750)
+        tres = tkinter.Button(master=root, text="5", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=210, y=750)
+        quatro = tkinter.Button(master=root, text="10", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=50, y=790)
+        cinco = tkinter.Button(master=root, text="20", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=130, y=790)
+        seis = tkinter.Button(master=root, text="25", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=210, y=790)
+        sete = tkinter.Button(master=root, text="50", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=50, y=830)
+        oito = tkinter.Button(master=root, text="75", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=130, y=830)
+        nove = tkinter.Button(master=root, text="100", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=210, y=830)
+        zerar = tkinter.Button(master=root, text="ZERAR", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=130, y=870)
+
+        self.playeraposta = tk.Label()
+        self.playeraposta.grid(row=0, column=0)
+        self.playeraposta.place(x=100, y=100)
+
     def voltarMenu(self):
         if self.getPl() == 0:
             self.menu()
@@ -122,7 +158,14 @@ class A:
     def getPl(self):
         return self.players
 
+    def setPlayers(self):
+        nome = ["ALPHA","BETA","CHARLIE","DELTA"]
+        for i in range(self.players):
+            nome[i] = Player(nome[i])
+            self.playersjogando.append(nome[i])
+
     def europeu(self):
+        self.setPlayers()
         if self.getPl() != 0:
             self.photo = PhotoImage(file="tabela.gif")
             self.backlabel = Label(root, image=self.photo).place(x=-1,y=-1)
@@ -136,7 +179,10 @@ class A:
 
             self.apostas()
 
+
+
     def americano(self):
+        self.setPlayers()
         if self.getPl() != 0:
             self.photo = PhotoImage(file="tabela.gif")
             self.backlabel = Label(root, image=self.photo).place(x=-1,y=-1)
@@ -151,6 +197,7 @@ class A:
             self.apostas()
 
     def frances(self):
+        self.setPlayers()
         if self.getPl() != 0:
             self.photo = PhotoImage(file="tabela.gif")
             self.backlabel = Label(root, image=self.photo).place(x=-1,y=-1)
@@ -163,6 +210,8 @@ class A:
             voltar = tkinter.Button(master=root,text="voltar para o menu",width=15,command=self.voltarMenu,fg="red",bg="black",font=("Times 13 bold")).place(x=10,y=10)
 
             self.apostas()
+
+
 
 root = tk.Tk()
 A(root)

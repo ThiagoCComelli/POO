@@ -15,5 +15,6 @@ class Player():
     def getTip(self):
         return self.__tips
 
+
     def setTip(self,value):
         self.__tips += value
