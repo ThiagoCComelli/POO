@@ -33,6 +33,9 @@ class Player():
     def setApostaZerar(self):
         self.__aposta = 0
     def setJogadas(self,jogada):
-        self.__jogadas.append(jogada)
+        if jogada in self.__jogadas:
+            pass
+        else:
+            self.__jogadas.append(jogada)
     def setProsseguir(self,condicao):
         self.__prosseguir = condicao

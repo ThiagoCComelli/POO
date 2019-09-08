@@ -2,6 +2,8 @@ import tkinter as tk
 import time
 import tkinter
 from tkinter import *
+from tkinter.ttk import *
+from tkinter import *
 from random import randint
 from roleta import Roleta
 from players import Player
@@ -16,6 +18,79 @@ class A:
         self.banco = 1000
         self.apostados = []
         self.menu()
+
+    def voltarMenu(self):
+        if self.getPl() == 0:
+            self.menu()
+            self.buttonsMenu()
+
+    def jogar(self):
+        if self.getModo() == "AMERICANO":
+            self.americano()
+        elif self.getModo() == "EUROPEU":
+            self.europeu()
+        elif self.getModo() == "FRANCES":
+            self.frances()
+
+    def setpl(self,qtde):
+        self.players = qtde
+        self.jogadorestit.configure(text='QUANTIDADE DE JOGADORES: {}'.format(self.players), font="Times 25 bold",fg="red", bg="black")
+
+    def setModo(self,modo):
+        self.modo = modo
+        self.modedejogotit.configure(text='MODO DE JOGO: {}'.format(self.modo), font="Times 25 bold",fg="red", bg="black")
+
+    def getModo(self):
+        return self.modo
+
+    def getPl(self):
+        return self.players
+
+    def getVez(self):
+        return self.vez
+
+    def getTipBanco(self):
+        return self.banco
+
+    def setTipBanco(self,valor):
+        self.banco += valor
+
+    def getNumganhador(self):
+        if self.getVez() == self.getPl():
+            self.numganhador.configure(text='{}'.format(self.roleta.getNumAme()), font="Times 70 bold", fg="black",bg="white")
+            self.clique.configure(text='', font="Times 20 bold", fg="red", bg="black")
+            self.vez = 0
+        else:
+            pass
+
+        self.valornatela.configure(text='{}'.format(self.playersjogando[self.getVez()].getAposta()),font="Times 25 bold", fg="red", bg="black")
+        self.jogadordavez.configure(text='{}'.format(self.playersjogando[self.getVez()].getNome()),font="Times 25 bold", fg="red", bg="black")
+        self.jogadortip.configure(text='SEU DINHEIRO: {}'.format(self.playersjogando[self.getVez()].getTip()),font="Times 25 bold", fg="red", bg="black")
+        self.listadejogadas.configure(text='JOGADAS: {}'.format(self.playersjogando[self.getVez()].getJogadas()),font="Times 25 bold", fg="red", bg="black")
+
+
+    def setVez(self):
+        self.vez += 1
+        if self.getVez() == self.getPl():
+            self.jogadordavez.configure(text='',font="Times 25 bold", fg="red", bg="black")
+            self.valornatela.configure(text='',font="Times 25 bold", fg="red", bg="black")
+            self.listadejogadas.configure(text='',font="Times 25 bold", fg="red", bg="black")
+            self.jogadortip.configure(text='',font="Times 25 bold", fg="red", bg="black")
+
+            self.clique.configure(text='CLIQUE! =>', font="Times 20 bold", fg="red", bg="black")
+
+
+        # self.jogadordavez.configure(text='{}'.format(self.playersjogando[self.getVez()].getNome()),font="Times 25 bold", fg="red", bg="black")
+        # self.valornatela.configure(text='{}'.format(self.playersjogando[self.getVez()].getAposta()),font="Times 25 bold", fg="red", bg="black")
+        # self.listadejogadas.configure(text='JOGADAS: {}'.format(self.playersjogando[self.getVez()].getJogadas()),font="Times 25 bold", fg="red", bg="black")
+
+
+
+    def setPlayers(self):
+        nome = ["ALPHA","BETA","CHARLIE","DELTA"]
+        for i in range(self.players):
+            nome[i] = Player(nome[i])
+            self.playersjogando.append(nome[i])
 
     def menu(self):
 
@@ -129,48 +204,9 @@ class A:
         nove = tkinter.Button(master=root, text="100", width=5, height=0, fg="red", bg="black",font="Times 13 bold",command=lambda:self.fazerAposta(100)).place(x=210, y=830)
         zerar = tkinter.Button(master=root, text="ZERAR", width=5, height=0, fg="red", bg="black",font="Times 13 bold",command=lambda:self.fazerAposta(0)).place(x=130, y=870)
 
-        apostar = tkinter.Button(master=root, text="APOSTAR", width=5, height=0, fg="red", bg="black",font="Times 13 bold").place(x=130, y=930)
+        apostar = tkinter.Button(master=root, text="APOSTAR", width=5, height=0, fg="red", bg="black",font="Times 13 bold",command=lambda:self.setVez()).place(x=130, y=930)
 
-
-
-    def voltarMenu(self):
-        if self.getPl() == 0:
-            self.menu()
-            self.buttonsMenu()
-
-    def jogar(self):
-        if self.getModo() == "AMERICANO":
-            self.americano()
-        elif self.getModo() == "EUROPEU":
-            self.europeu()
-        elif self.getModo() == "FRANCES":
-            self.frances()
-
-    def setpl(self,qtde):
-        self.players = qtde
-        self.jogadorestit.configure(text='QUANTIDADE DE JOGADORES: {}'.format(self.players), font="Times 25 bold",fg="red", bg="black")
-
-    def setModo(self,modo):
-        self.modo = modo
-        self.modedejogotit.configure(text='MODO DE JOGO: {}'.format(self.modo), font="Times 25 bold",fg="red", bg="black")
-
-    def getModo(self):
-        return self.modo
-
-    def getPl(self):
-        return self.players
-
-    def getVez(self):
-        return self.vez
-
-    def setVez(self):
-        self.vez += 1
-
-    def setPlayers(self):
-        nome = ["ALPHA","BETA","CHARLIE","DELTA"]
-        for i in range(self.players):
-            nome[i] = Player(nome[i])
-            self.playersjogando.append(nome[i])
+        girar = tkinter.Button(master=root, text="GIRAR", width=20, fg="red",bg="black", font="Times 13 bold",command=lambda: self.getNumganhador()).place(x=1530, y=38)
 
     def europeu(self):
         self.setPlayers()
@@ -183,7 +219,7 @@ class A:
             self.titulo = tk.Label()
             self.titulo.grid(row=0, column=0)
             self.titulo.configure(text='EUROPEU', font="Times 25 bold",fg="red",bg="black")
-            self.titulo.place(x=850)
+            self.titulo.place(x=180,y=5)
 
             voltar = tkinter.Button(master=root,text="voltar para o menu",width=15,command=self.voltarMenu,fg="red",bg="black",font=("Times 13 bold")).place(x=10,y=10)
 
@@ -197,15 +233,43 @@ class A:
             self.jogadordavez.configure(text='{}'.format(self.playersjogando[self.getVez()].getNome()), font="Times 25 bold",fg="red", bg="black")
             self.jogadordavez.place(x=210, y=927)
 
+            self.jogadortip = tk.Label()
+            self.jogadortip.grid(row=0, column=0)
+            self.jogadortip.configure(text='SEU DINHEIRO: {}'.format(self.playersjogando[self.getVez()].getTip()),font="Times 25 bold", fg="red", bg="black")
+            self.jogadortip.place(x=40, y=700)
+
+            self.listadejogadas = tk.Label()
+            self.listadejogadas.grid(row=0, column=0)
+            self.listadejogadas.configure(text='JOGADAS: {}'.format(self.playersjogando[self.getVez()].getJogadas()),font="Times 25 bold", fg="red", bg="black")
+            self.listadejogadas.place(x=460, y=400)
+
+            self.numganhador = tk.Label(root)
+            self.numganhador.grid(row=0, column=0)
+            self.numganhador.configure(text='', font="Times 20 bold",bg="white")
+            self.numganhador.place(x=1580, y=170)
+
+            self.clique = tk.Label(root)
+            self.clique.grid(row=0, column=0)
+            self.clique.configure(text='', font="Times 20 bold", fg="red", bg="black")
+            self.clique.place(x=1360, y=38)
+
+            self.bancot = tk.Label()
+            self.bancot.grid(row=0, column=0)
+            self.bancot.configure(text='DINHEIRO DO BANCO: {}'.format(self.banco),font="Times 25 bold", fg="red", bg="black")
+            self.bancot.place(x=535, y=965)
+
     def fazerAposta(self,valor):
         if valor == 0:
             self.playersjogando[self.getVez()].setApostaZerar()
         else:
             self.playersjogando[self.getVez()].setAposta(valor)
         self.valornatela.configure(text='{}'.format(self.playersjogando[self.getVez()].getAposta()),font="Times 25 bold", fg="red", bg="black")
+        self.listadejogadas.configure(text='JOGADAS: {}'.format(self.playersjogando[self.getVez()].getJogadas()),font="Times 25 bold", fg="red", bg="black")
+
 
     def fazerApostaBotoes(self,numero):
         self.playersjogando[self.getVez()].setJogadas(numero)
+        self.listadejogadas.configure(text='JOGADAS: {}'.format(self.playersjogando[self.getVez()].getJogadas()),font="Times 25 bold", fg="red", bg="black")
         print(self.playersjogando[self.getVez()].getJogadas())
 
 
