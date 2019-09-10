@@ -143,7 +143,7 @@ class A:
 
     def menu(self):
 
-        self.photo = PhotoImage(file="preto.gif")
+        self.photo = PhotoImage(file="images/preto.gif")
         self.backlabel = Label(root, image=self.photo).place(x=-1, y=-1)
 
         self.titulo = tk.Label(root)
@@ -262,7 +262,7 @@ class A:
     def europeu(self):
         self.setPlayers()
         if self.getPl() != 0:
-            self.photo = PhotoImage(file="tabela.gif")
+            self.photo = PhotoImage(file="images/tabela.gif")
             self.backlabel = Label(root, image=self.photo).place(x=-1,y=-1)
 
             self.apostas()
@@ -327,7 +327,7 @@ class A:
     def frances(self):
         self.setPlayers()
         if self.getPl() != 0:
-            self.photo = PhotoImage(file="tabela.gif")
+            self.photo = PhotoImage(file="images/tabela.gif")
             self.backlabel = Label(root, image=self.photo).place(x=-1,y=-1)
 
             self.titulo = tk.Label()
