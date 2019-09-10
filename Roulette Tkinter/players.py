@@ -12,7 +12,11 @@ class Player():
         self.__tips = 100
         self.__jogadas = []
         self.__aposta = 0
-        self.__prosseguir = False
+        self.__rodadasSemApostar = 0
+        self.__prosseguir = True
+        self.__umto12 = False
+        self.__trezeto24 = False
+        self.__vintecincoto36 = False
 
     def getNome(self):
         return self.__nome
@@ -24,7 +28,11 @@ class Player():
         return self.__aposta
     def getProsseguir(self):
         return self.__prosseguir
+    def getRodadas(self):
+        return self.__rodadasSemApostar
 
+    def setRodadasSemApostar(self):
+        self.__rodadasSemApostar += 1
 
     def setTip(self,value):
         self.__tips += value
@@ -35,7 +43,11 @@ class Player():
     def setJogadas(self,jogada):
         if jogada in self.__jogadas:
             pass
+        elif jogada == "CLEAR":
+            self.__jogadas = []
         else:
             self.__jogadas.append(jogada)
+
     def setProsseguir(self,condicao):
         self.__prosseguir = condicao
+
