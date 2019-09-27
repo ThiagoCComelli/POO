@@ -15,7 +15,7 @@ class Estabelecimento():
         # self.__estoque = Estoque()
         self.telalogin()
 
-    # Verifica se o usuario é valido, por padrao todas as respostas é admin
+    # Verifica se o usuário é valido, por padrao todas as respostas é admin
     def verificaLogin(self,nome,senha,secreto):
         if nome == "admin" and senha == "admin" and secreto == "admin":
             self.frame1.place_forget()
