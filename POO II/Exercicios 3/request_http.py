@@ -5,27 +5,46 @@ import time
 import threading
 
 tot = 0
+r = None
 
-def vai():
+def gerador():
     global tot
-    while True:
+    global r
+    if r != None:
         valor = []
-        r = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=demo")
         data = r.json()
 
         timeSeries = data["Time Series (5min)"]
         open = [float(dado["1. open"]) for dado in timeSeries.values()]
 
+        print("gerador =>           " + str(open))
+
         for i in range(len(open)):
             valor.append(i)
 
         plt.plot(valor,open)
-        plt.show()
         plt.savefig('images/'+'c'+str(tot)+'books_read.jpeg')
+        plt.show()
 
         tot += 1
 
-        time.sleep(1)
+def atualizaRequest():
+    global r
+    while True:
+        r = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=ABEV3.SA&interval=5min&apikey=234234")
+        data = r.json()
+        timeSeries = data["Time Series (5min)"]
+        open = [float(dado["1. open"]) for dado in timeSeries.values()]
 
-thread1 = threading.Thread(target=vai)
-thread1.start()
+        print("atualizaRequest =>   " + str(open))
+
+        gerador()
+
+        time.sleep(295)
+
+
+# thread1 = threading.Thread(target=gerador)
+# thread1.start()
+
+thread2 = threading.Thread(target=atualizaRequest)
+thread2.start()
