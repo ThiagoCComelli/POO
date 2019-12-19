@@ -3,4 +3,4 @@ project(URI-Online-Judge)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(untitled Viagem.cpp)
+add_executable(untitled Funcionario.cpp Funcionario.hpp)
