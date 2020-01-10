@@ -1,0 +1,11 @@
+F:\Projetos C#\POO\C#\POO\bin\Debug\netcoreapp3.1\POO.exe
+F:\Projetos C#\POO\C#\POO\bin\Debug\netcoreapp3.1\POO.deps.json
+F:\Projetos C#\POO\C#\POO\bin\Debug\netcoreapp3.1\POO.runtimeconfig.json
+F:\Projetos C#\POO\C#\POO\bin\Debug\netcoreapp3.1\POO.runtimeconfig.dev.json
+F:\Projetos C#\POO\C#\POO\bin\Debug\netcoreapp3.1\POO.dll
+F:\Projetos C#\POO\C#\POO\bin\Debug\netcoreapp3.1\POO.pdb
+F:\Projetos C#\POO\C#\POO\obj\Debug\netcoreapp3.1\POO.csprojAssemblyReference.cache
+F:\Projetos C#\POO\C#\POO\obj\Debug\netcoreapp3.1\POO.AssemblyInfoInputs.cache
+F:\Projetos C#\POO\C#\POO\obj\Debug\netcoreapp3.1\POO.AssemblyInfo.cs
+F:\Projetos C#\POO\C#\POO\obj\Debug\netcoreapp3.1\POO.dll
+F:\Projetos C#\POO\C#\POO\obj\Debug\netcoreapp3.1\POO.pdb
